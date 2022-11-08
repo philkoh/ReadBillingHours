@@ -18,12 +18,23 @@
         Dim line As String
         Dim total As Decimal = 0.0
         Dim aggregateHours As Decimal = 0.0
+        Dim copyFilepath As String = ""
+        Dim copySelectedLines As String = ""
         For Each line In lines
             Dim tr As String = line.Trim
+            Dim excludeThisLine As Boolean = False
+            If LCase(tr).StartsWith("b") Or LCase(tr).StartsWith("r") Then
+                tr = tr.Substring(1)
+                If RadioButtonExcludeB.Checked Then excludeThisLine = True
+            Else
+                If RadioButtonOnlyB.Checked Then excludeThisLine = True
+            End If
+
             If tr.Length > 3 Then
                 Dim tokens() As String = tr.Split(" ")
                 Dim dateString As String = tokens(0)
                 If dateString.Contains("/") Then
+                    copySelectedLines = copySelectedLines & tr & vbCrLf
                     Dim dateTokens() As String = dateString.Split("/")
                     If dateTokens.Count <> 3 Then
                         MsgBox("Error in line, wrong number of slashes: " & line)
@@ -36,11 +47,16 @@
                     If total > 0 Then
                         TextBox1.AppendText(total.ToString & " hours" & vbCrLf)
                         TextBox2.AppendText("  " & total.ToString & " hours" & vbCrLf)
+                    Else
+                        TextBox2.AppendText(vbCrLf)
                     End If
 
                     total = 0
                     TextBox2.AppendText(dateString)
                 Else   ' hours
+                    If excludeThisLine Then Continue For
+                    copySelectedLines = copySelectedLines & tr & vbCrLf
+
                     Dim firstLetter As String = tr.Substring(0, 1)
                     If Not IsNumeric(firstLetter) Then
                         MsgBox("Error in line, doesnt start with a number: " & line)
@@ -77,10 +93,15 @@
         Next
         If total > 0 Then
             TextBox1.AppendText(total.ToString & " hours" & vbCrLf)
-            TextBox2.AppendText("  " & total.ToString & " hours" & vbCrLf)
-            TextBox2.AppendText("Total hours: " & aggregateHours.ToString & vbCrLf)
+            TextBox2.AppendText("  " & total.ToString & " hours")
         End If
+        TextBox2.AppendText(vbCrLf & "Total hours: " & aggregateHours.ToString & vbCrLf)
 
+        copyFilepath = OpenFileDialog1.FileName & "only"
+        If RadioButtonOnlyB.Checked Then copyFilepath = copyFilepath & "BUC.txt"
+        If RadioButtonExcludeB.Checked Then copyFilepath = copyFilepath & "ESA.txt"
+
+        FileIO.FileSystem.WriteAllText(copyFilepath, copySelectedLines, False)
 
     End Sub
 
@@ -113,7 +134,6 @@
 
 
     End Function
-
 
 
 End Class
