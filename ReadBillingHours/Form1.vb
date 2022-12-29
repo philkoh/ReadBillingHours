@@ -25,10 +25,17 @@
             Dim excludeThisLine As Boolean = False
             If LCase(tr).StartsWith("b") Or LCase(tr).StartsWith("r") Then
                 tr = tr.Substring(1)
-                If RadioButtonExcludeB.Checked Then excludeThisLine = True
+                If RadioButtonExcludeBorS.Checked Then excludeThisLine = True
             Else
                 If RadioButtonOnlyB.Checked Then excludeThisLine = True
             End If
+            If LCase(tr).StartsWith("s") Then
+                tr = tr.Substring(1)
+                If RadioButtonExcludeBorS.Checked Then excludeThisLine = True
+            Else
+                If RadioButtonOnlyS.Checked Then excludeThisLine = True
+            End If
+
 
             If tr.Length > 3 Then
                 Dim tokens() As String = tr.Split(" ")
@@ -99,7 +106,8 @@
 
         copyFilepath = OpenFileDialog1.FileName & "only"
         If RadioButtonOnlyB.Checked Then copyFilepath = copyFilepath & "BUC.txt"
-        If RadioButtonExcludeB.Checked Then copyFilepath = copyFilepath & "ESA.txt"
+        If RadioButtonOnlyS.Checked Then copyFilepath = copyFilepath & "STARING.txt"
+        If RadioButtonExcludeBorS.Checked Then copyFilepath = copyFilepath & "ESA.txt"
 
         FileIO.FileSystem.WriteAllText(copyFilepath, copySelectedLines, False)
 

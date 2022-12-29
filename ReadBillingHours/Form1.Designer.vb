@@ -27,9 +27,10 @@ Partial Class Form1
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.RadioButtonOnlyB = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonExcludeB = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonExcludeBorS = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.RadioButtonIncludeAll = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonOnlyS = New System.Windows.Forms.RadioButton()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -48,12 +49,12 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(179, 22)
+        Me.TextBox1.Location = New System.Drawing.Point(195, 22)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(506, 734)
+        Me.TextBox1.Size = New System.Drawing.Size(490, 734)
         Me.TextBox1.TabIndex = 1
         '
         'TextBox2
@@ -76,24 +77,25 @@ Partial Class Form1
         Me.RadioButtonOnlyB.Text = "OnlyLinesStartingWithB"
         Me.RadioButtonOnlyB.UseVisualStyleBackColor = True
         '
-        'RadioButtonExcludeB
+        'RadioButtonExcludeBorS
         '
-        Me.RadioButtonExcludeB.AutoSize = True
-        Me.RadioButtonExcludeB.Location = New System.Drawing.Point(11, 19)
-        Me.RadioButtonExcludeB.Name = "RadioButtonExcludeB"
-        Me.RadioButtonExcludeB.Size = New System.Drawing.Size(153, 17)
-        Me.RadioButtonExcludeB.TabIndex = 4
-        Me.RadioButtonExcludeB.Text = "ExcludeLinesStartingWithB"
-        Me.RadioButtonExcludeB.UseVisualStyleBackColor = True
+        Me.RadioButtonExcludeBorS.AutoSize = True
+        Me.RadioButtonExcludeBorS.Location = New System.Drawing.Point(11, 19)
+        Me.RadioButtonExcludeBorS.Name = "RadioButtonExcludeBorS"
+        Me.RadioButtonExcludeBorS.Size = New System.Drawing.Size(169, 17)
+        Me.RadioButtonExcludeBorS.TabIndex = 4
+        Me.RadioButtonExcludeBorS.Text = "ExcludeLinesStartingWithBorS"
+        Me.RadioButtonExcludeBorS.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.RadioButtonOnlyS)
         Me.GroupBox1.Controls.Add(Me.RadioButtonIncludeAll)
         Me.GroupBox1.Controls.Add(Me.RadioButtonOnlyB)
-        Me.GroupBox1.Controls.Add(Me.RadioButtonExcludeB)
+        Me.GroupBox1.Controls.Add(Me.RadioButtonExcludeBorS)
         Me.GroupBox1.Location = New System.Drawing.Point(9, 114)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(170, 104)
+        Me.GroupBox1.Size = New System.Drawing.Size(180, 130)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
@@ -102,13 +104,23 @@ Partial Class Form1
         '
         Me.RadioButtonIncludeAll.AutoSize = True
         Me.RadioButtonIncludeAll.Checked = True
-        Me.RadioButtonIncludeAll.Location = New System.Drawing.Point(11, 65)
+        Me.RadioButtonIncludeAll.Location = New System.Drawing.Point(11, 88)
         Me.RadioButtonIncludeAll.Name = "RadioButtonIncludeAll"
         Me.RadioButtonIncludeAll.Size = New System.Drawing.Size(74, 17)
         Me.RadioButtonIncludeAll.TabIndex = 5
         Me.RadioButtonIncludeAll.TabStop = True
         Me.RadioButtonIncludeAll.Text = "Include All"
         Me.RadioButtonIncludeAll.UseVisualStyleBackColor = True
+        '
+        'RadioButtonOnlyS
+        '
+        Me.RadioButtonOnlyS.AutoSize = True
+        Me.RadioButtonOnlyS.Location = New System.Drawing.Point(11, 65)
+        Me.RadioButtonOnlyS.Name = "RadioButtonOnlyS"
+        Me.RadioButtonOnlyS.Size = New System.Drawing.Size(136, 17)
+        Me.RadioButtonOnlyS.TabIndex = 6
+        Me.RadioButtonOnlyS.Text = "OnlyLinesStartingWithS"
+        Me.RadioButtonOnlyS.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -133,7 +145,8 @@ Partial Class Form1
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents RadioButtonOnlyB As RadioButton
-    Friend WithEvents RadioButtonExcludeB As RadioButton
+    Friend WithEvents RadioButtonExcludeBorS As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents RadioButtonIncludeAll As RadioButton
+    Friend WithEvents RadioButtonOnlyS As RadioButton
 End Class
